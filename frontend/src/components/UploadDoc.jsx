@@ -1,9 +1,17 @@
 import React from 'react'
 import { FaTimes } from 'react-icons/fa'
+import ProSidebar from './ProSidebar'
+import SearchBar from './SearchBar'
 //import { toast } from 'react-toastify'
 
 const UploadDoc = () => {
   return (
+
+    <div className='flex flex-row bg-neutral-100 h-screen w-screen overflow-hidden'>
+        <ProSidebar/>
+        <div className='flex-1'> 
+            <SearchBar/>
+            </div>
     <div
     className={`fixed top-0 left-0 w-screen h-screen flex
   items-center justify-center bg-black bg-opacity-50
@@ -94,6 +102,8 @@ const UploadDoc = () => {
       </form>
     </div>
   </div>
+    </div>
+   
   )
 }
 

@@ -1,22 +1,23 @@
 import './App.css';
-import Header from './components/Header';
-import Hero from './components/Hero';
-// import Sidebar from './components/Sidebar';
-// import History from './components/History'
-// import UploadDoc from './components/UploadDoc';
-
+import { Route, Routes } from 'react-router-dom'
+import Home from './components/views/Home';
+import Admin from './components/views/Admin';
+import Register from './components/Register';
+import Transactions from './components/Transactions';
+import Pro from './components/views/Pro';
+import UploadDoc from './components/UploadDoc';
 function App() {
   return (
-    <div className="flex h-screen bg-gray-100 font-sans">
-    {/* <Sidebar /> */}
-    <div className="flex-1">
-        <Header />
-        {/* <UploadDoc/> */}
-        <Hero/>
-      
+    <div>
+       <Routes>
+          <Route path="/" element={<Home />} />
+          <Route  path='/admin' element= {<Admin/>}/>
+          <Route path='/admin/register' element={<Register/>}/>
+          <Route path='/admin/transactions' element={<Transactions/>}/>
+          <Route path='/pro' element={<Pro/>}/>
+          <Route path='/pro/upload' element= {<UploadDoc/>}/>
+        </Routes>
     </div>
-   
-</div>
   );
 }
 

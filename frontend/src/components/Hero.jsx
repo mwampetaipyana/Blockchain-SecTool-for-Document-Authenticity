@@ -14,7 +14,7 @@ const Hero = () => {
             </h1>
         </div>
 
-        <div className='text-center h-auto bg-slate-500 opacity-60 text-gray-900  py-24 px-12 bg-cover bg-center bg-no-repeat'>
+        <div className='text-center h-auto bg-slate-500  text-gray-900  py-24 px-12 bg-cover bg-center bg-no-repeat'>
             
             <h2 className='text-2xl text-gray-50 md:text-6xl xl:text-7xl font-bold
             tracking-tight mb-12'>
@@ -25,6 +25,20 @@ const Hero = () => {
             mitigate tampering and forgery, reduce disputes and litigation risks, and comply with regulatory requirements.<br/>
             Security tool verify document authenticity in Tanzania public organizations using blockchain timestamping,<br/>
             incorporating features like authentication mechanism and blockchain integration.
+            </p>
+
+            <h3 className='pt-4 text-gray-50 md:text-6xl xl:text-7xl text-2xl font-bold tracking-tight mb-12'> Blockchain Timestamps</h3>
+
+            <p className='text-center text-gray-50 text-2xl'>
+            A timestamp on the blockchain is a record that pinpoints when a specific transaction or event occurred,<br/>
+             often detailing the exact date and time. These timestamps are foundational to blockchain technology, <br/>
+             ensuring that transactions are recorded in the sequence they occurred. <br/>
+            Moreover, when combined with cryptographic techniques, 
+             timestamps bolster the authenticity and integrity of data. <br/>
+             Any change in the block’s data would disrupt its timestamp, making any tampering evident.<br/>
+              In the decentralized blockchain world, where there’s no central governing body, <br/>
+              timestamps offer a trusted mechanism for validating transactions, <br/>
+              fostering consensus across the network’s nodes about the blockchain’s current state.<br/>
             </p>
         </div>
 

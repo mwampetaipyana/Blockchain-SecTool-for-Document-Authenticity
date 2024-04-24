@@ -10,8 +10,6 @@ const Header = () => {
         <TbBusinessplan />
       </Link>
 
-      {/* #fb8500 */}
-      {/* #2C74B3 */}
 
       <div className="flex space-x-2 justify-center">
         <button
