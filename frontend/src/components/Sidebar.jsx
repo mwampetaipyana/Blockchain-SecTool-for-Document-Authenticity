@@ -8,7 +8,7 @@ const linkClasses = 'flex items-center gap-2 font-light px-3 py-2 hover:bg-[#2C7
 
 const Sidebar = () => {
   return (
-    <div className='bg-[#083344] h-screen w-60 p-3 flex flex-col text-white'>
+    <div className='bg-[#083344] h-screen w-60 p-3 flex flex-col text-white z-10 relative top-0 left-0 inline-block'>
       <div className='flex items-center gap-2 px-1 py-3 '>
         <TbBusinessplan fontSize={24}/> 
         <span className='text-white text-lg items-center'>SecTool</span>

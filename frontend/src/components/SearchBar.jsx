@@ -1,9 +1,10 @@
 import React, { Fragment } from 'react'
 import { HiOutlineBell, HiOutlineChatAlt, HiOutlineSearch } from 'react-icons/hi'
 import { Popover, Transition } from '@headlessui/react'
+import './searchbar.css';
 const SearchBar = () => {
   return (
-    <div className='bg-white h-16 px-4 flex justify-between items-center border-b border-gray-200 '>
+    <div className='Searchbar absolute top-0 left-60 bg-white h-16 px-4 items-center border-b border-gray-200 '>
 
     <div className='relative '>
         <HiOutlineSearch fontSize={20} className='text-gray-400 absolute top-1/2 -translate-y-1/2 left-3'/>
@@ -38,12 +39,7 @@ const SearchBar = () => {
      </Popover>       
         
         <HiOutlineBell fontSize={24}/>
-    </div>  
-
-    
-
-     
-   
+    </div>
     </div>
   )
 }
