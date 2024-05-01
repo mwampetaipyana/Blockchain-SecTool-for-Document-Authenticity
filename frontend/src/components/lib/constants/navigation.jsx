@@ -17,14 +17,14 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 	{
 		key: 'register',
 		label: 'Register',
-		path: '/admin/register',
+		path: 'register',
 		icon: <HiOutlineUserAdd />
 	},
 
 	{
 		key: 'transactions',
 		label: 'Transactions',
-		path: '/admin/transactions',
+		path: 'transactions',
 		icon: <HiOutlineDocumentText />
 	}
 ]
@@ -49,20 +49,20 @@ export const PRO_SIDEBAR_LINKS = [
 	{
 		key: 'dashboard',
 		label: 'Dashboard',
-		path: '/pro',
+		path: 'pro',
 		icon: <HiOutlineViewGrid />
 	},
 	{
 		key: 'upload',
 		label: 'Upload Document',
-		path: '/pro/upload',
+		path: 'upload',
 		icon: <HiOutlineUpload/>
 	}
 	,
 	{
 		key: 'transactions',
 		label: 'Transactions',
-		path: '/pro/transactions',
+		path: 'transactions',
 		icon: <HiOutlineDocumentText />
 	}
 ]

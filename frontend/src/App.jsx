@@ -1,22 +1,25 @@
 import './App.css';
-import { Route, Routes } from 'react-router-dom'
-import Home from './components/views/Home';
-import Admin from './components/views/Admin';
+import { Routes, Route } from 'react-router-dom';
+// Removed unused import
+
 import Register from './components/Register';
 import Transactions from './components/Transactions';
-import Pro from './components/views/Pro';
-import UploadDoc from './components/UploadDoc';
+import AdminDashboard from  './components/AdminDashboard';
+import Home from './components/views/Home';
+import AdminLayout from './components/shared/AdminLayout';
+
 function App() {
   return (
     <div>
-       <Routes>
-          <Route path="/" element={<Home />} />
-          <Route  path='/admin' element= {<Admin/>}/>
-          <Route path='/admin/register' element={<Register/>}/>
-          <Route path='/admin/transactions' element={<Transactions/>}/>
-          <Route path='/pro' element={<Pro/>}/>
-          <Route path='/pro/upload' element= {<UploadDoc/>}/>
-        </Routes>
+      <Routes>
+        <Route path='/admin' element={<AdminLayout/>}>
+          <Route index element={<AdminDashboard/>}/>
+          <Route path='register' element={<Register/>}/>
+          <Route path='transactions' element={<Transactions/>}/>
+        </Route>
+
+        <Route path='/' element={<Home/>}/> 
+      </Routes>
     </div>
   );
 }

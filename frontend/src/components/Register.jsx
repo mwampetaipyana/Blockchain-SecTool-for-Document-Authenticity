@@ -1,115 +1,65 @@
 import React from 'react'
-import Sidebar from './Sidebar'
-import SearchBar from './SearchBar'
-
 
 const Register = () => {
   return (
-    <div className='flex flex-row bg-neutral-100 h-screen w-screen overflow-hidden'>
-          <Sidebar/>
-        <div className='flex-1'> 
-            <SearchBar/> 
-            <div   className={`fixed top-0 left-0 w-screen h-screen flex
-              items-center justify-center bg-black bg-opacity-50
-                transform transition-transform duration-300 `}>
-              <div className="bg-white shadow-xl shadow-black
-                  rounded-xl w-11/12 md:w-2/5 h-7/12 p-6 ">
-              <form  className="flex flex-col  p-4">
-          <div className="flex justify-between items-center">
-            <p className="font-semibold">Add Project</p>
+
+<div className="flex justify-center items-center h-screen bg-gray-100">
+   <form action="" className='max-w-lg w-full h-3/4 p-5 bg-white rounded-lg shadow-lg'>
+          <div className="flex flex-col justify-center items-center mb-8">
+            <h1 className="text-center text-3xl font-bold mb-5">Sign up</h1>
           </div>
 
-          <div
-            className="flex justify-between items-center
-          bg-gray-300 rounded-xl mt-5"
-          >
-            <input
-              className="block w-full bg-transparent
-            border-0 text-sm text-slate-500 focus:outline-none
-            focus:ring-0"
-              type="text"
-              name="title"
-              placeholder="Title"
-              required
-            />
-          </div>
-
-          <div
-            className="flex justify-between items-center
-          bg-gray-300 rounded-xl mt-5"
-          >
-            <input
-              className="block w-full bg-transparent
-            border-0 text-sm text-slate-500 focus:outline-none
-            focus:ring-0"
-              type="number"
-              step={0.01}
-              min={0.01}
-              name="cost"
-              placeholder="cost (ETH)"
-              required
-            />
-          </div>
-
-          <div
-            className="flex justify-between items-center
-          bg-gray-300 rounded-xl mt-5"
-          >
-            <input
-              className="block w-full bg-transparent
-            border-0 text-sm text-slate-500 focus:outline-none
-            focus:ring-0"
-              type="date"
-              name="date"
-              placeholder="Expires"
-              required
-            />
-          </div>
-
-          <div
-            className="flex justify-between items-center
-          bg-gray-300 rounded-xl mt-5"
-          >
-            <input
-              className="block w-full bg-transparent
-            border-0 text-sm text-slate-500 focus:outline-none
-            focus:ring-0"
-              type="url"
-              name="imageURL"
-              placeholder="Image URL"
-              required
-            />
-          </div>
-
-          <div
-            className="flex justify-between items-center
-          bg-gray-300 rounded-xl mt-5"
-          >
-            <textarea
-              className="block w-full bg-transparent
-            border-0 text-sm text-slate-500 focus:outline-none
-            focus:ring-0"
-              type="text"
-              name="description"
-              placeholder="Description"
-              required
-            ></textarea>
-          </div>
-
-          <button
-            type="submit"
-            className="inline-block px-6 py-2.5 bg-[#023047]
-            text-white font-medium text-md leading-tight
-            rounded-full shadow-md hover:bg-[#fb8500] mt-5"
-          >
-            Submit Project
-          </button>
-        </form>
-              </div>
-          
-      </div>
+          <div className="mb-4">
+            <div className="flex items-center border-b border-gray-200 py-2">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+              </svg>
+              <input type="text" placeholder="First Name" className="w-full focus:outline-none" />
             </div>
-        </div>
+          </div>
+
+          <div className="mb-4">
+            <div className="flex items-center border-b border-gray-200 py-2">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+              </svg>
+              <input type="text" placeholder="Last Name" className="w-full focus:outline-none" />
+            </div>
+          </div>
+
+
+          <div className="mb-4">
+            <div className="flex items-center border-b border-gray-200 py-2">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+              </svg>
+              <input type="text" placeholder="Wallet Address" className="w-full focus:outline-none" />
+            </div>
+          </div>
+
+          <div className="mb-4">
+            <div className="flex items-center border-b border-gray-200 py-2">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+              </svg>
+              <input type="text" placeholder="Organization" className="w-full focus:outline-none" />
+            </div>
+          </div>
+
+          <div className="mb-4">
+            <div className="flex items-center border-b border-gray-200 py-2">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+              </svg>
+              <input type="text" placeholder="Location" className="w-full focus:outline-none" />
+            </div>
+          </div>
+
+          <div className=" mt-4 pt-4">
+          <button className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg mb-4">Register</button>
+          </div>
+   </form> 
+</div>
   )
 }
 
