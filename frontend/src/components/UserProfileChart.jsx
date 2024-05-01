@@ -2,9 +2,9 @@ import React from 'react';
 import { Legend, Pie, PieChart, Cell } from 'recharts';
 
 const data = [
-  { name: 'Male', value: 540 },
-  { name: 'Female', value: 620 },
-  { name: 'Other', value: 210 }
+  { name: 'Male', value: 645 },
+  { name: 'Female', value: 725 }
+  
 ];
 
 const COLORS = ['#00C49F', '#FFBB28', '#FF8042'];
@@ -24,7 +24,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 const UserProfileChart = () => {
   return (
     <div className="w-1/4 h-[22rem] bg-white p-4 rounded-sm border border-gray-200 flex flex-col">
-      <strong className="text-gray-700 font-medium">Buyer Profile</strong>
+      <strong className="text-gray-700 font-medium">User Profile</strong>
       <div className="w-full mt-3 flex-1 text-xs">
         <PieChart width={400} height={300}>
           <Pie

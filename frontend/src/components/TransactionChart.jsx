@@ -4,63 +4,63 @@ import { BarChart , CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar } from 're
 const data = [
     {
 		name: 'Jan',
-		Expense: 4000,
-		Income: 2400
+		Uploads: 4000,
+		Verification: 2400
 	},
 	{
 		name: 'Feb',
-		Expense: 3000,
-		Income: 1398
+		Uploads: 3000,
+		Verification: 1398
 	},
 	{
 		name: 'Mar',
-		Expense: 2000,
-		Income: 9800
+		Uploads: 2000,
+		Verification: 9800
 	},
 	{
 		name: 'Apr',
-		Expense: 2780,
-		Income: 3908
+		Uploads: 2780,
+		Verification: 3908
 	},
 	{
 		name: 'May',
-		Expense: 1890,
-		Income: 4800
+		Uploads: 1890,
+		Verification: 4800
 	},
 	{
 		name: 'Jun',
-		Expense: 2390,
-		Income: 3800
+		Uploads: 2390,
+		Verification: 3800
 	},
 	{
 		name: 'July',
-		Expense: 3490,
-		Income: 4300
+		Uploads: 3490,
+		Verification: 4300
 	},
 	{
 		name: 'Aug',
-		Expense: 2000,
-		Income: 9800
+		Uploads: 2000,
+		Verification: 9800
 	},
 	{
 		name: 'Sep',
-		Expense: 2780,
-		Income: 3908
+		Uploads: 2780,
+		Verification: 3908
 	},
 	{
 		name: 'Oct',
-		Expense: 1890,
-		Income: 4800
+		Uploads: 1890,
+		Verification: 4800
 	},
 	{
 		name: 'Nov',
-		Expense: 2390,
-		Income: 3800
+		Uploads: 2390,
+		Verification: 3800
 	},
 	{
 		name: 'Dec',
-		Expense: 3490,
-		Income: 4300
+		Uploads: 3490,
+		Verification: 4300
 	}
 ]
 const TransactionChart = () => {
@@ -85,8 +85,8 @@ const TransactionChart = () => {
 						<YAxis />
 						<Tooltip />
 						<Legend />
-						<Bar dataKey="Income" fill="#0ea5e9" />
-						<Bar dataKey="Expense" fill="#ea580c" />
+						<Bar dataKey="Verification" fill="#0ea5e9" />
+						<Bar dataKey="Uploads" fill="#ea580c" />
 					</BarChart>
 				
 			</div>

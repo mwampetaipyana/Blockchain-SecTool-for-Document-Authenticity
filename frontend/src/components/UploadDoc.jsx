@@ -1,35 +1,22 @@
 import React from 'react'
-import { FaTimes } from 'react-icons/fa'
-import ProSidebar from './ProSidebar'
-import SearchBar from './SearchBar'
+
+
 //import { toast } from 'react-toastify'
 
 const UploadDoc = () => {
   return (
 
-    <div className='flex flex-row bg-neutral-100 h-screen w-screen overflow-hidden'>
-        <ProSidebar/>
-        <div className='flex-1'> 
-            <SearchBar/>
-            </div>
+
+    <div className="flex justify-center items-center h-screen bg-gray-100">
+
     <div
-    className={`fixed top-0 left-0 w-screen h-screen flex
-  items-center justify-center bg-black bg-opacity-50
-  transform transition-transform duration-300 `}
-  >
-    <div
-      className="bg-white shadow-xl shadow-black
+      className="bg-white h-1/2 shadow-xl shadow-black
       rounded-xl w-11/12 md:w-2/5 h-7/12 p-6"
     >
       <form className="flex flex-col">
         <div className="flex justify-between items-center">
           <p className="font-semibold">Upload Document</p>
-          <button
-            type="button"
-            className="border-0 bg-transparent focus:outline-none"
-          >
-            <FaTimes />
-          </button>
+          
         </div>
 
         <div
@@ -97,12 +84,14 @@ const UploadDoc = () => {
           text-white font-medium text-md leading-tight
           rounded-full shadow-md hover:bg-[#fb8500] mt-5"
         >
-          Submit Project
+          Upload Document
         </button>
       </form>
     </div>
-  </div>
+  
     </div>
+    
+
    
   )
 }

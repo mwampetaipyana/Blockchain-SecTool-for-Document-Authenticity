@@ -56,7 +56,7 @@ const Register = () => {
           </div>
 
           <div className=" mt-4 pt-4">
-          <button className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg mb-4">Register</button>
+          <button className="w-full bg-[#2C74B3] hover:bg-[#fb8500] text-white py-2 px-4 rounded-lg mb-4">Register</button>
           </div>
    </form> 
 </div>

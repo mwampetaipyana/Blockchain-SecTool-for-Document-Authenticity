@@ -7,6 +7,9 @@ import Transactions from './components/Transactions';
 import AdminDashboard from  './components/AdminDashboard';
 import Home from './components/views/Home';
 import AdminLayout from './components/shared/AdminLayout';
+import ProDashboard from './components/ProDashboard';
+import UploadDoc from './components/UploadDoc'
+import ProLayout from './components/shared/ProLayout';
 
 function App() {
   return (
@@ -15,6 +18,12 @@ function App() {
         <Route path='/admin' element={<AdminLayout/>}>
           <Route index element={<AdminDashboard/>}/>
           <Route path='register' element={<Register/>}/>
+          <Route path='transactions' element={<Transactions/>}/>
+        </Route>
+
+        <Route path='/pro' element={<ProLayout/>}>
+          <Route index element={<ProDashboard/>}/>
+          <Route path='upload' element={<UploadDoc/>}/>
           <Route path='transactions' element={<Transactions/>}/>
         </Route>
 

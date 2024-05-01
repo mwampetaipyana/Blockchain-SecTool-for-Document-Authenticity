@@ -49,7 +49,7 @@ export const PRO_SIDEBAR_LINKS = [
 	{
 		key: 'dashboard',
 		label: 'Dashboard',
-		path: 'pro',
+		path: '/pro',
 		icon: <HiOutlineViewGrid />
 	},
 	{

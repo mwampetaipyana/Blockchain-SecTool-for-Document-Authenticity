@@ -4,145 +4,13 @@ import { getOrderStatus } from './utils'
 
 const recentOrderData = [
 	{
-		id: '1',
-		product_id: '4324',
-		customer_id: '23143',
-		customer_name: 'Shirley A. Lape',
-		order_date: '2022-05-17T03:24:00',
-		order_total: '$435.50',
-		current_order_status: 'PLACED',
-		shipment_address: 'Cottage Grove, OR 97424'
+		sn: '1',
+		txn_type: 'VERIFICATION',
+		wallet_address: '0xEbaE2dB0AA7feb11aa0E6ffd3C7A76c9199d7bb7',
+		date: '2024-05-01T03:24:00',
+		txn_status: 'SUCCESSFUL'
 	},
-	{
-		id: '7',
-		product_id: '7453',
-		customer_id: '96453',
-		customer_name: 'Ryan Carroll',
-		order_date: '2022-05-14T05:24:00',
-		order_total: '$96.35',
-		current_order_status: 'CONFIRMED',
-		shipment_address: 'Los Angeles, CA 90017'
-	},
-	{
-		id: '2',
-		product_id: '5434',
-		customer_id: '65345',
-		customer_name: 'Mason Nash',
-		order_date: '2022-05-17T07:14:00',
-		order_total: '$836.44',
-		current_order_status: 'SHIPPED',
-		shipment_address: 'Westminster, CA 92683'
-	},
-	{
-		id: '3',
-		product_id: '9854',
-		customer_id: '87832',
-		customer_name: 'Luke Parkin',
-		order_date: '2022-05-16T12:40:00',
-		order_total: '$334.50',
-		current_order_status: 'SHIPPED',
-		shipment_address: 'San Mateo, CA 94403'
-	},
-	{
-		id: '4',
-		product_id: '8763',
-		customer_id: '09832',
-		customer_name: 'Anthony Fry',
-		order_date: '2022-05-14T03:24:00',
-		order_total: '$876.00',
-		current_order_status: 'OUT_FOR_DELIVERY',
-		shipment_address: 'San Mateo, CA 94403'
-	},
-	{
-		id: '5',
-		product_id: '5627',
-		customer_id: '97632',
-		customer_name: 'Ryan Carroll',
-		order_date: '2022-05-14T05:24:00',
-		order_total: '$96.35',
-		current_order_status: 'DELIVERED',
-		shipment_address: 'Los Angeles, CA 90017'
-	},
-	{
-		id: '5',
-		product_id: '5627',
-		customer_id: '97632',
-		customer_name: 'Ryan Carroll',
-		order_date: '2022-05-14T05:24:00',
-		order_total: '$96.35',
-		current_order_status: 'DELIVERED',
-		shipment_address: 'Los Angeles, CA 90017'
-	},
-	{
-		id: '5',
-		product_id: '5627',
-		customer_id: '97632',
-		customer_name: 'Ryan Carroll',
-		order_date: '2022-05-14T05:24:00',
-		order_total: '$96.35',
-		current_order_status: 'DELIVERED',
-		shipment_address: 'Los Angeles, CA 90017'
-	},
-	{
-		id: '5',
-		product_id: '5627',
-		customer_id: '97632',
-		customer_name: 'Ryan Carroll',
-		order_date: '2022-05-14T05:24:00',
-		order_total: '$96.35',
-		current_order_status: 'DELIVERED',
-		shipment_address: 'Los Angeles, CA 90017'
-	},
-	{
-		id: '5',
-		product_id: '5627',
-		customer_id: '97632',
-		customer_name: 'Ryan Carroll',
-		order_date: '2022-05-14T05:24:00',
-		order_total: '$96.35',
-		current_order_status: 'DELIVERED',
-		shipment_address: 'Los Angeles, CA 90017'
-	},
-	{
-		id: '5',
-		product_id: '5627',
-		customer_id: '97632',
-		customer_name: 'Ryan Carroll',
-		order_date: '2022-05-14T05:24:00',
-		order_total: '$96.35',
-		current_order_status: 'DELIVERED',
-		shipment_address: 'Los Angeles, CA 90017'
-	},
-	{
-		id: '5',
-		product_id: '5627',
-		customer_id: '97632',
-		customer_name: 'Ryan Carroll',
-		order_date: '2022-05-14T05:24:00',
-		order_total: '$96.35',
-		current_order_status: 'DELIVERED',
-		shipment_address: 'Los Angeles, CA 90017'
-	},
-	{
-		id: '5',
-		product_id: '5627',
-		customer_id: '97632',
-		customer_name: 'Ryan Carroll',
-		order_date: '2022-05-14T05:24:00',
-		order_total: '$96.35',
-		current_order_status: 'DELIVERED',
-		shipment_address: 'Los Angeles, CA 90017'
-	},
-	{
-		id: '5',
-		product_id: '5627',
-		customer_id: '97632',
-		customer_name: 'Ryan Carroll',
-		order_date: '2022-05-14T05:24:00',
-		order_total: '$96.35',
-		current_order_status: 'DELIVERED',
-		shipment_address: 'Los Angeles, CA 90017'
-	}
+	
 
 ]
 const Transactions = () => {
@@ -155,32 +23,29 @@ const Transactions = () => {
           <table className='w-full text-gray-700 border-x border-gray-200 rounded-sm'>
             <thead>
               <tr>
-                <td>ID</td>
-                <td>Product ID</td>
-                <td>Customer Name</td>
-                <td>Order Date</td>
-                <td>Order Total</td>
-                <td>Shipping Address</td>
-                <td>Order Status</td>
+                <td>S/N</td>
+                <td>Transaction Type</td>
+                <td>Address</td>
+                <td>Transaction Date</td>
+                <td>Transaction Status</td>
 
               </tr>
             </thead>
             <tbody>
-            {recentOrderData.map((order) => (
-            <tr key={order.id}> 
+            {recentOrderData.map((txn) => (
+            <tr key={txn.sn}> 
                     <td>
-                      <Link to={`/order/${order.id}`}>{order.id}</Link>
+                      <Link to={`/order/${txn.sn}`}>{txn.sn}</Link>
                     </td>
                     <td>
-                       <Link to={`/product/${order.product_id}`}>{order.product_id}</Link>
+                       <Link to={`/product/${txn.txn_type}`}>{txn.txn_type}</Link>
                     </td>
                     <td>
-                      <Link to={`/customer/${order.customer_id}`}>{order.customer_name}</Link>
+                      <Link to={`/customer/${txn.customer_id}`}>{txn.wallet_address}</Link>
                     </td>
-                    <td>{new Date(order.order_date).toLocaleDateString()}</td>
-                    <td>{order.order_total}</td>
-                    <td>{order.shipment_address}</td>
-                    <td>{getOrderStatus(order.current_order_status)}</td>
+                    <td>{new Date(txn.date).toLocaleDateString()}</td>
+                    
+                    <td>{getOrderStatus(txn.txn_status)}</td>
 
             </tr>
             ))}

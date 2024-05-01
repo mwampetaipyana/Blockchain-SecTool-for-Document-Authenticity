@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import { TbBusinessplan } from 'react-icons/tb'
+import Verify from './Verify';
+
 
 const Header = () => {
   return (
@@ -14,9 +16,10 @@ const Header = () => {
       <div className="flex space-x-2 justify-center">
         <button
           type="button"
+          onClick={<Verify/>}
           className=" inline-block px-6 py-2.5 bg-[#fb8500] text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-[#2C74B3]"
         >
-          0x...2334
+          VERIFY DOCUMENT
         </button>
 
         <button
