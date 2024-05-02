@@ -10,8 +10,10 @@ const Sidebar = () => {
   return (
     <div className='bg-[#083344] w-60 p-3 flex flex-col text-white'>
       <div className='flex items-center gap-2 px-1 py-3 '>
-      <TbBusinessplan fontSize={24}/> 
-        <span className='text-slate-100 text-lg'>SecTool</span>
+      <Link to="/" className="flex justify-between no-underline items-center text-xl text-white space-x-1">
+        <span>SecTool</span>
+        <TbBusinessplan />
+      </Link>
       </div>
       <div className='flex-1 py-8 flex flex-col gap-0.5'>
         {PRO_SIDEBAR_LINKS.map((item) => (

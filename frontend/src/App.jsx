@@ -10,6 +10,7 @@ import AdminLayout from './components/shared/AdminLayout';
 import ProDashboard from './components/ProDashboard';
 import UploadDoc from './components/UploadDoc'
 import ProLayout from './components/shared/ProLayout';
+import Verify from './components/Verify';
 
 function App() {
   return (
@@ -25,9 +26,11 @@ function App() {
           <Route index element={<ProDashboard/>}/>
           <Route path='upload' element={<UploadDoc/>}/>
           <Route path='transactions' element={<Transactions/>}/>
+          
         </Route>
 
         <Route path='/' element={<Home/>}/> 
+        <Route path='verify' element={<Verify/>}/>
       </Routes>
     </div>
   );
