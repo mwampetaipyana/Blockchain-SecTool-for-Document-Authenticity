@@ -57,12 +57,11 @@ export const PRO_SIDEBAR_LINKS = [
 		label: 'Upload Document',
 		path: 'upload',
 		icon: <HiOutlineUpload/>
-	}
-	,
+	},
 	{
-		key: 'transactions',
-		label: 'Transactions',
-		path: 'transactions',
+		key: 'documents',
+		label: 'My Documents',
+		path: 'documents',
 		icon: <HiOutlineDocumentText />
 	}
 ]

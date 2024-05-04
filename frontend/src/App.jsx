@@ -11,6 +11,7 @@ import ProDashboard from './components/ProDashboard';
 import UploadDoc from './components/UploadDoc'
 import ProLayout from './components/shared/ProLayout';
 import Verify from './components/Verify';
+import Documents from './components/Documents';
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
         <Route path='/pro' element={<ProLayout/>}>
           <Route index element={<ProDashboard/>}/>
           <Route path='upload' element={<UploadDoc/>}/>
-          <Route path='transactions' element={<Transactions/>}/>
+          <Route path='documents' element={<Documents/>}/>
           
         </Route>
 
