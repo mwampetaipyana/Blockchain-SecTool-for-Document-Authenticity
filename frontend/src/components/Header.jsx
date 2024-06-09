@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
+import {connectWallet} from '../services/blockchain'
 import { TbBusinessplan } from 'react-icons/tb'
 import Modal from "react-modal";
 
@@ -75,7 +76,7 @@ const Header = () => {
         <button
           type="button"
           className="inline-block px-6 py-2.5 bg-[#fb8500] text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-[#2C74B3]"
-          // onClick={connectWallet}
+          onClick={connectWallet}
         >
           Connect Wallet
         </button>
