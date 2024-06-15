@@ -117,7 +117,7 @@ contract SecTool {
     }
 
     // Function to verify a document by a Pro
-    function verifyDocumentByPro(string memory _ipfs_hash)
+    function verifyDocument(string memory _ipfs_hash)
         public
         view
         returns (bool)
@@ -246,7 +246,7 @@ contract SecTool {
     }
 
     // Function to view documents posted by a specific PRO
-    function viewDocumentsByPRO(address _proAddress)
+    function viewPRODocuments(address _proAddress)
         public
         view
         returns (Document[] memory)
@@ -258,7 +258,7 @@ contract SecTool {
         return documentsArray;
     }
     // Function to get transactions for a specific Pro
-    function getTransactionsForPro(address _proAddress)
+    function getProTransactions(address _proAddress)
         public
         view
         returns (Transaction[] memory)
@@ -283,6 +283,9 @@ contract SecTool {
         return proTransactions;
     }
 
+    function getAllTxns() public view returns (Transaction[] memory) {
+        return transactionsArray;
+    }
     modifier adminOnly() {
         require(msg.sender == admin, "SecTool Admin account is required");
         _;
