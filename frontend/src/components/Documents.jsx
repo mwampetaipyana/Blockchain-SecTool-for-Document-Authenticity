@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { FaEye, FaPen, FaTrash } from "react-icons/fa6";
+import { FaTimes } from 'react-icons/fa'
 import { Link } from "react-router-dom";
+import { editDocument } from "../services/blockchain";
+import { toast } from "react-toastify";
+import { addFile } from "../services/PinataServices";
 import Modal from "react-modal";
 const recentDocumentsData = [
   {
@@ -13,6 +17,13 @@ const recentDocumentsData = [
 const Documents = () => {
   const [modalEditIsOpen, setModalEditIsOpen] = useState(false);
   const [modalDeleteIsOpen, setModalDeleteIsOpen] = useState(false);
+  const [modalViewIsOpen, setModalViewIsOpen] =useState(false);
+
+  const[docID, setID] = useState('')
+  const[title, setTitle] = useState('') 
+  const [date, setDate] = useState('')
+  const [file, setFile] = useState('')
+  const [description, setDescription] = useState('')
 
   const showEditModal = () => {
     setModalEditIsOpen(true);
@@ -20,6 +31,9 @@ const Documents = () => {
 
   const showDeleteModal = () => {
     setModalDeleteIsOpen(true);
+  };
+  const showViewModal = () => {
+    setModalViewIsOpen(true);
   };
 
   const hideEditModal = () => {
@@ -30,17 +44,53 @@ const Documents = () => {
     setModalDeleteIsOpen(false);
   };
 
-  const [file, setFile] = useState(null);
+  const hideViewModal = () => {
+    setModalViewIsOpen(false);
+  };
+  
+  const toTimestamp = (dateStr) => {
+    const dateObj = Date.parse(dateStr)
+    return dateObj / 1000
+  }
 
-  const handleFileChange = (e) => {
-    if (e.target.files) {
-      setFile(e.target.files[0]);
+  // const handleFileChange = (e) => {
+  //   if (e.target.files) {
+  //     setFile(e.target.files[0]);
+  //   }
+  // };
+
+  let cid 
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    if(!title || ! docID || !date || !file || !description) return
+
+    cid = await addFile(title,file)
+    console.log(cid)
+
+    const params = {
+      docID,
+      title,
+      date : toTimestamp(date),
+      cid,
+      description
     }
-  };
 
-  const handleUpload = async () => {
-    // We will fill this out later
-  };
+    await editDocument(params)
+    toast.success('Document Uploaded Successfully, will reflect in 30sec.')
+    reset()
+  }
+
+  const getFileUrl = ()=>{
+    return process.env.REACT_APP_PINATA_GATEWAY + "QmQPU7oZYLivXbMBxwksdKukxcqLF5Xnfa4GjWtS52juva"
+}
+
+  const reset = () => {
+    setID('')
+    setTitle('')
+    setDescription('')
+    setFile('')
+    setDate('')
+  }
 
   return (
     <div className="bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
@@ -67,14 +117,12 @@ const Documents = () => {
                   <Link to={`/product/${txn.title}`}>{txn.title}</Link>
                 </td>
                 <td>
-                  <Link to={`/customer/${txn.docCid}`}>
-                    {txn.docCid}
-                  </Link>
+                  <Link to={`/customer/${txn.docCid}`}>{txn.docCid}</Link>
                 </td>
                 <td>{new Date(txn.date).toLocaleDateString()}</td>
 
                 <td>
-                  <button className="p-2">
+                  <button className="p-2" onClick={showViewModal}>
                     {" "}
                     <FaEye />{" "}
                   </button>
@@ -100,7 +148,7 @@ const Documents = () => {
                     className="bg-white  shadow-xl shadow-black
                       rounded-xl w-11/12 md:w-2/5 h-7/12 p-6"
                   >
-                    <form className="flex flex-col">
+                    <form className="flex flex-col" onSubmit={handleSubmit}>
                       <div className="flex justify-between items-center">
                         <p className="font-semibold">Edit Document</p>
 
@@ -109,7 +157,7 @@ const Documents = () => {
                      text-white font-medium text-md leading-tight rounded-full shadow-md hover:bg-red-700 mt-5"
                           onClick={hideEditModal}
                         >
-                          Close
+                         <FaTimes/>
                         </button>
                       </div>
 
@@ -122,6 +170,8 @@ const Documents = () => {
           border-0 text-sm text-slate-500 focus:outline-none
           focus:ring-0"
                           placeholder="Document ID"
+                          onChange={(e) => setID(e.target.value)}
+                          value={docID}
                           required
                         />
                       </div>
@@ -135,6 +185,7 @@ const Documents = () => {
           border-0 text-sm text-slate-500 focus:outline-none
           focus:ring-0"
                           placeholder="Title"
+                          onChange={(e) => setTitle(e.target.value)}
                           required
                         />
                       </div>
@@ -149,6 +200,8 @@ const Documents = () => {
           focus:ring-0"
                           type="date"
                           name="date"
+                          onChange={(e) => setDate(e.target.value)}
+                          value={date}
                           placeholder="Date"
                           required
                         />
@@ -165,6 +218,7 @@ const Documents = () => {
                           type="file"
                           accept=".pdf"
                           name="file"
+                          onChange={(e) => setFile(e.target.files[0])}
                           placeholder="Choose file"
                           required
                         />
@@ -180,6 +234,8 @@ const Documents = () => {
           focus:ring-0"
                           type="text"
                           name="description"
+                          onChange={(e) => setDescription(e.target.value)}
+                          value={description}
                           placeholder="Description"
                           required
                         ></textarea>
@@ -196,6 +252,67 @@ const Documents = () => {
                     </form>
                   </div>
                 </Modal>
+
+                <Modal
+                  isOpen={modalDeleteIsOpen}
+                  hideModal={hideDeleteModal}
+                  className={`className=" p-4 flex justify-center items-center opacity-90 h-screen bg-white-100"`}
+                >
+                  <div
+                    className="bg-white flex-col shadow-xl shadow-black
+                      rounded-xl w-11/12 md:w-2/5 h-7/12 p-6"> 
+                    <div className="flex justify-between items-center">
+                      <p className="font-semibold">Delete Document</p>
+
+                      <button
+                        className="inline-block px-6 py-2.5 bg-red-500 
+                     text-white font-medium text-md leading-tight rounded-full shadow-md hover:bg-red-700 mt-5"
+                        onClick={hideDeleteModal}
+                      >
+                         <FaTimes/>
+                      </button>
+                    </div>
+
+                    <div className="flex flex-col justify-center items-center rounded-xl mt-5">
+                      <p className="font-bold text-xl">Are you sure?</p>
+                      <small className="text-red-400 text-lg">
+                        This is irreversible!
+                      </small>
+
+
+                    <button
+                      className="inline-block px-6 py-2.5 bg-red-500
+                      text-white font-medium text-md leading-tight
+                      rounded-full shadow-md hover:bg-red-700 mt-5"
+                    >
+                      Delete Document
+                    </button>
+                    </div>
+                  </div>
+                </Modal>
+
+               
+
+<Modal 
+  isOpen={modalViewIsOpen}
+  hideModal={hideViewModal}
+  className="p-4 flex justify-center items-center opacity-90 h-screen bg-white-100">
+  <div className="bg-white flex-col shadow-xl shadow-black rounded-xl w-screen md:w-screen h-screen p-6">
+    <div className="flex justify-between items-center mb-5">
+      <p className="font-semibold">View Document</p>
+      <button
+        className="inline-block px-6 py-2.5 bg-red-500 text-white font-medium text-md leading-tight rounded-full shadow-md hover:bg-red-700 mt-5"
+        onClick={hideViewModal}
+      >
+        <FaTimes />
+      </button>
+    </div>
+    <iframe src={getFileUrl()} className="w-full h-[600px] border-none mb-5 aspect-w-16 aspect-h-9">
+      
+    </iframe>
+  </div>
+</Modal>
+
               </tr>
             ))}
           </tbody>

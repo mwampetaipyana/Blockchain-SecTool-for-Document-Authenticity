@@ -1,15 +1,59 @@
-import React from "react";
-
+import React, { useState } from "react";
+import { storeDocument } from "../services/blockchain";
+import { toast } from 'react-toastify'
+import { addFile } from "../services/PinataServices";
 //import { toast } from 'react-toastify'
 
 const UploadDoc = () => {
+  
+  const[docID, setID] = useState('')
+  const[title, setTitle] = useState('') 
+  const [date, setDate] = useState('')
+  const [file, setFile] = useState('')
+  const [description, setDescription] = useState('')
+
+  const toTimestamp = (dateStr) => {
+    const dateObj = Date.parse(dateStr)
+    return dateObj / 1000
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    if(!title || ! docID || !date || !file || !description) return
+    
+    const cid = await addFile(title,file)
+    console.log(cid)
+
+    const params = {
+      docID, 
+      title,
+      date : toTimestamp(date),
+      cid,
+      description
+    }
+
+    await storeDocument(params)
+    toast.success('Document Uploaded Successfully, will reflect in 30sec.')
+    reset()
+  }
+
+  const reset = () => {
+    setID('')
+    setTitle('')
+    setDescription('')
+    setFile('')
+    setDate('')
+  }
+
+  
+
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
       <div
         className="bg-white h-1/2 shadow-xl shadow-black
       rounded-xl w-11/12 md:w-2/5 h-7/12 p-6"
       >
-        <form className="flex flex-col">
+        <form className="flex flex-col" onSubmit={handleSubmit}>
           <div className="flex justify-between items-center">
             <p className="font-semibold">Upload Document</p>
           </div>
@@ -23,6 +67,8 @@ const UploadDoc = () => {
           border-0 text-sm text-slate-500 focus:outline-none
           focus:ring-0"
               placeholder="Document ID"
+              onChange={(e) => setID(e.target.value)}
+              value={docID}
               required
               
             />
@@ -37,6 +83,8 @@ const UploadDoc = () => {
           border-0 text-sm text-slate-500 focus:outline-none
           focus:ring-0"
               placeholder="Title"
+              onChange={(e) => setTitle(e.target.value)}
+              value={title}
               required
             />
           </div>
@@ -52,6 +100,8 @@ const UploadDoc = () => {
               type="date"
               name="date"
               placeholder="Date"
+              onChange={(e) => setDate(e.target.value)}
+              value={date}
               required
             />
           </div>
@@ -68,6 +118,7 @@ const UploadDoc = () => {
               accept=".pdf"
               name="file"
               placeholder="Choose file"
+              onChange={(e) => setFile(e.target.files[0])}
               required
             />
           </div>
@@ -83,6 +134,8 @@ const UploadDoc = () => {
               type="text"
               name="description"
               placeholder="Description"
+              onChange={(e) => setDescription(e.target.value)}
+              value={description}
               required
             ></textarea>
           </div>
@@ -91,7 +144,7 @@ const UploadDoc = () => {
             type="submit"
             className="inline-block px-6 py-2.5 bg-[#2C74B3]
           text-white font-medium text-md leading-tight
-          rounded-full shadow-md hover:bg-[#fb8500] mt-5"
+          rounded-full shadow-md hover:bg-[#083344] mt-5"
           >
             Upload Document
           </button>

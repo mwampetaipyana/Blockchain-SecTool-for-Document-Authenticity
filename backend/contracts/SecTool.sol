@@ -95,6 +95,7 @@ contract SecTool {
         string memory _docID,
         string memory _title,
         string memory _description,
+        uint256 _timestamp,
         string memory _ipfs_hash
     ) public isPRO{
         require(bytes(_title).length > 0, "Title cannot be empty");
@@ -106,7 +107,7 @@ contract SecTool {
             title: _title,
             description: _description,
             ipfs_hash: _ipfs_hash,
-            timestamp: block.timestamp,
+            timestamp: _timestamp,
             uploader: msg.sender
         });
 

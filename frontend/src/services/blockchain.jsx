@@ -4,7 +4,7 @@ import { getGlobalState, setGlobalState } from "../store";
 
 import { ethers } from "ethers";
 
-//const INFURA_API_KEY = process.env.INFURA_API_KEY;
+const INFURA_API_KEY = process.env.INFURA_API_KEY;
 const { ethereum } = window;
 const contractAddress = address.address;
 const contractAbi = abi.abi;
