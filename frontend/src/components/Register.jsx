@@ -7,18 +7,18 @@ const Register = () => {
 
   const[fname, setFname] = useState('')
   const[lname, setLname] = useState('') 
-  const [address, setAddress] = useState('')
+  const [proAddress, setAddress] = useState('')
   const [organizaion, setOrganization] = useState('')
   const [location, setLocation] = useState('')
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if(!fname || !lname || !address || !organizaion || ! location) return 
+    if(!fname || !lname || !proAddress || !organizaion || ! location) return 
 
     const params = {
       fname,
       lname,
-      address,
+      proAddress,
       organizaion,
       location
     }
@@ -123,7 +123,7 @@ const Register = () => {
               type="text"
               placeholder="Wallet Address"
               onChange={(e) => setAddress(e.target.value)}
-              value={address}
+              value={proAddress}
               className="w-full focus:outline-none"
               required
             />

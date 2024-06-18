@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { connectWallet } from '../services/blockchain';
+import { getSignerContract, getViewerContract } from '../services/blockchain';
 import { TbBusinessplan } from 'react-icons/tb';
 import Modal from "react-modal";
 import { toast } from 'react-toastify';
+import { notifyError } from '../services/notificationServices';
+import { useNavigate } from 'react-router-dom';
+
+
 import { verifyDocument } from '../services/blockchain';
 import { addFile } from '../services/PinataServices';
 
@@ -11,12 +15,39 @@ const Header = () => {
   const [file, setFile] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
+  const navigate = useNavigate();
+
+  const login = async ()=>{
+    console.log('hey there');
+    if(!window.ethereum.isMetaMask){
+      notifyError('Install metamask!')
+      return
+    }
+    const {contract} = await getViewerContract()
+    const { signer } = await getSignerContract()
+    const signerAddress = await signer.getAddress();
+    const userType = await contract.login(signerAddress)
+    
+  
+    if(userType[2]==="admin"){
+      localStorage.setItem('role','admin')
+      navigate('/admin')
+    }
+    else if(userType[2]==="pro"){
+      localStorage.setItem('role','pro')
+      navigate('/pro')
+    }
+    else notifyError('We BWEGE tuh!')
+  }
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!file) return;
     try {
       const cid = await addFile("filename", file);
+      console.log(file)
       console.log(`The CID: ${cid}`);
 
       await verifyDocument(cid);
@@ -99,7 +130,7 @@ const Header = () => {
         <button
           type="button"
           className="inline-block px-6 py-2.5 bg-[#fb8500] text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-[#2C74B3]"
-          onClick={connectWallet}
+          onClick={login}
         >
           Connect Wallet
         </button>

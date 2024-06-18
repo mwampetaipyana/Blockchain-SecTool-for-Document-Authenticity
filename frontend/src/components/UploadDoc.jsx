@@ -8,7 +8,7 @@ const UploadDoc = () => {
   
   const[docID, setID] = useState('')
   const[title, setTitle] = useState('') 
-  const [date, setDate] = useState('')
+  const [timestamp, setTimestamp] = useState('')
   const [file, setFile] = useState('')
   const [description, setDescription] = useState('')
 
@@ -19,19 +19,19 @@ const UploadDoc = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if(!title || ! docID || !date || !file || !description) return
+    if(!title || ! docID || !timestamp || !file || !description) return
     
-    const cid = await addFile(title,file)
+    let cid = await addFile(title,file)
     console.log(cid)
 
     const params = {
       docID, 
       title,
-      date : toTimestamp(date),
+      timestamp : toTimestamp(timestamp),
       cid,
       description
     }
-
+    params.cid = cid;
     await storeDocument(params)
     toast.success('Document Uploaded Successfully, will reflect in 30sec.')
     reset()
@@ -42,7 +42,7 @@ const UploadDoc = () => {
     setTitle('')
     setDescription('')
     setFile('')
-    setDate('')
+    setTimestamp('')
   }
 
   
@@ -100,8 +100,8 @@ const UploadDoc = () => {
               type="date"
               name="date"
               placeholder="Date"
-              onChange={(e) => setDate(e.target.value)}
-              value={date}
+              onChange={(e) => setTimestamp(e.target.value)}
+              value={timestamp}
               required
             />
           </div>

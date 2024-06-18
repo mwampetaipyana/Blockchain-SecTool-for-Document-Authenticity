@@ -27,7 +27,7 @@ const Sidebar = () => {
         ))}
         <div className={classNames('text-red-500 cursor-pointer', linkClasses) }>
             <span className='text-xl'><HiOutlineLogout/></span>
-            <Link to="/" className='text-red-500 no-underline'> Logout</Link>
+            <Link to="/" onClick={localStorage.clear()} className='text-red-500 no-underline'> Logout</Link>
             
         </div>
 

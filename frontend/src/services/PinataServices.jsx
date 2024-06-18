@@ -4,9 +4,7 @@ export const addFile = async (FileName, FileObject) => {
     const formData = new FormData();
 
     formData.append('file', FileObject);
-    formData.append("pinataMetadata", `{
-      "name": "${FileName}"
-    }`);
+    formData.append("pinataMetadata", `{\n  \"name\": \"${FileName}\"\n}`);
     const pinataOptions = JSON.stringify({
       cidVersion: 0,
     });
