@@ -8,6 +8,7 @@ contract SecTool {
     // Constructor to set admin address
     constructor() {
         admin = msg.sender;
+        userMapping[admin].role = "admin";
     }
 
     struct Pro {
@@ -16,6 +17,7 @@ contract SecTool {
         address proAddress;
         string organization;
         string location;
+        string role;
     }
 
     struct Document {
@@ -46,6 +48,7 @@ contract SecTool {
     // Mappings
     mapping(address => Document[]) mydocumentsMapping;
     mapping(string => Document[]) id_docMapping;
+    mapping (address => Pro) userMapping;
 
     // Event to log new transactions
     event NewTransaction(
@@ -84,9 +87,11 @@ contract SecTool {
             lname: _lname,
             proAddress: _proAddress,
             organization: _organization,
-            location: _location
+            location: _location,
+            role: "pro"
         });
         prosArray.push(newpro);
+        userMapping[_proAddress].role = "pro";
         addTransaction("Add Pro", msg.sender, "Success");
     }
 
@@ -239,6 +244,11 @@ contract SecTool {
         // Remove the last element (which is now the document we want to delete)
         mydocumentsMapping[msg.sender].pop();
     }
+    }
+
+     function login(address add) public view returns (string memory, string memory, string memory) {
+        Pro memory user = userMapping[add];
+        return (user.fname, user.lname,user.role);
     }
 
     // Function to view all PROs
