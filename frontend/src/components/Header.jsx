@@ -46,11 +46,12 @@ const Header = () => {
 
     if (!file) return;
     try {
-      const cid = await addFile("filename", file);
+      const ipfs_hash = await addFile("filename", file);
       console.log(file)
-      console.log(`The CID: ${cid}`);
+      console.log(`The CID: ${ipfs_hash}`);
 
-      await verifyDocument(cid);
+      let document = await verifyDocument({ipfs_hash});
+      console.log(document);
       toast.success('Wait for confirmation, will reflect in 30 seconds.');
       reset();
     } catch (error) {
@@ -83,7 +84,7 @@ const Header = () => {
           isOpen={modalIsOpen}
           onRequestClose={() => setModalIsOpen(false)}
           contentLabel="File Uploader Modal"
-          className="p-4 flex justify-center items-center opacity-80 h-screen bg-gray-50"
+          className={`className=" p-4 flex justify-center items-center opacity-100 h-screen bg-white-300"`}
         >
           <div className="flex flex-col justify-center items-center h-3/4 w-3/4 bg-gray-100">
             <form onSubmit={handleSubmit}>

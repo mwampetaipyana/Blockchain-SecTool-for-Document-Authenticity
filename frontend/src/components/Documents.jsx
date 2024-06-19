@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { FaEye, FaPen, FaTrash } from "react-icons/fa6";
 import { FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { editDocument, viewPRODocuments } from "../services/blockchain";
+import { deleteDocument, editDocument, viewPRODocuments } from "../services/blockchain";
 import { toast } from "react-toastify";
 import { addFile } from "../services/PinataServices";
 import { ethers } from "ethers";
@@ -22,11 +22,14 @@ const Documents = () => {
   const [documents, setDocuments] = useState([]);
   const [viewdoc, setViewDoc] = useState("");
 
-  const showEditModal = () => {
+  const showEditModal = (docID) => {
+    setViewDoc(docID);
     setModalEditIsOpen(true);
   };
 
-  const showDeleteModal = () => {
+  const showDeleteModal = (docID) => {
+    console.log(docID);
+    setViewDoc(docID);
     setModalDeleteIsOpen(true);
   };
 
@@ -71,19 +74,21 @@ const Documents = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!title || !docID || !date || !file || !description) return;
+    console.log('hello');
+    if (!title  || !file || !description) return;
 
     const cid = await addFile(title, file);
     console.log(cid);
 
     const params = {
-      docID,
+      docID: viewdoc,
       title,
       cid,
       description,
     };
 
     await editDocument(params);
+    hideEditModal();
     toast.success("Document Uploaded Successfully, will reflect in 30sec.");
     reset();
   };
@@ -99,6 +104,12 @@ const Documents = () => {
     setFile("");
     setDate("");
   };
+
+  const deleteDoc = async () => {
+      await deleteDocument({docID:viewdoc});
+      hideDeleteModal();
+  }
+
 
   return (
     <div className="bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
@@ -117,7 +128,7 @@ const Documents = () => {
           </thead>
           <tbody>
             {documents.map((txn) => (
-              <tr key={txn.sn}>
+              <tr key={txn.docID}>
                 <td>
                   <Link to={`/order/${txn.docID}`}>{txn.docID}</Link>
                 </td>
@@ -136,12 +147,12 @@ const Documents = () => {
                     <FaEye />
                   </button>
 
-                  <button className="p-2" onClick={showEditModal}>
+                  <button className="p-2" onClick={() =>showEditModal(txn.docID)}>
                     <FaPen />
                     <div className="h-3/4 w-3/4"></div>
                   </button>
 
-                  <button className="p-2" onClick={showDeleteModal}>
+                  <button className="p-2" onClick={()=>showDeleteModal(txn.docID)}>
                     <FaTrash />
                   </button>
                 </td>
@@ -171,8 +182,8 @@ const Documents = () => {
               <input
                 className="block w-full bg-transparent border-0 text-sm text-slate-500 focus:outline-none focus:ring-0"
                 placeholder="Document ID"
-                onChange={(e) => setID(e.target.value)}
-                value={docID}
+                disabled
+                value={viewdoc}
                 required
               />
             </div>
@@ -181,6 +192,7 @@ const Documents = () => {
                 className="block w-full bg-transparent border-0 text-sm text-slate-500 focus:outline-none focus:ring-0"
                 placeholder="Title"
                 onChange={(e) => setTitle(e.target.value)}
+                value={title}
                 required
               />
             </div>
@@ -218,21 +230,38 @@ const Documents = () => {
 
       <Modal
         isOpen={modalDeleteIsOpen}
-        onRequestClose={hideDeleteModal}
-        className="p-4 flex justify-center items-center opacity-90 h-screen bg-white-100"
+        hideModal={hideDeleteModal}
+        className={`className=" p-4 flex justify-center items-center opacity-90 h-screen bg-white-100"`}
       >
-        <div className="bg-white flex-col shadow-xl shadow-black rounded-xl w-11/12 md:w-2/5 h-7/12 p-6">
+        <div
+          className="bg-white flex-col shadow-xl shadow-black
+                      rounded-xl w-11/12 md:w-2/5 h-7/12 p-6"
+        >
           <div className="flex justify-between items-center">
             <p className="font-semibold">Delete Document</p>
+
             <button
-              className="inline-block px-6 py-2.5 bg-red-500 text-white font-medium text-md leading-tight rounded-full shadow-md hover:bg-red-700 mt-5"
+              className="inline-block px-6 py-2.5 bg-red-500 
+                     text-white font-medium text-md leading-tight rounded-full shadow-md hover:bg-red-700 mt-5"
               onClick={hideDeleteModal}
             >
               <FaTimes />
             </button>
           </div>
+
           <div className="flex flex-col justify-center items-center rounded-xl mt-5">
-            <p></p>
+            <p className="font-bold text-xl">Are you sure?</p>
+            <small className="text-red-400 text-lg">
+              This is irreversible!
+            </small>
+
+            <button onClick={()=>deleteDoc()}
+              className="inline-block px-6 py-2.5 bg-red-500
+                      text-white font-medium text-md leading-tight
+                      rounded-full shadow-md hover:bg-red-700 mt-5"
+            >
+              Delete Document
+            </button>
           </div>
         </div>
       </Modal>

@@ -125,7 +125,7 @@ const verifyDocument = async ({ ipfs_hash }) => {
     const { contract } = await getSignerContract();
     if (contract) {
       tx = await contract.verifyDocument(ipfs_hash);
-      await tx.wait();
+      return tx
     } else {
       console.error("Contract is not initialized.");
     }
@@ -151,6 +151,7 @@ const editDocument = async ({ docID, title, description, cid }) => {
 };
 
 const deleteDocument = async ({ docID }) => {
+  console.log(docID);
   try {
     if (!ethereum) return alert("Please Install Metamask");
 
