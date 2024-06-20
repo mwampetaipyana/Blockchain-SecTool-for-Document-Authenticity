@@ -6,6 +6,7 @@ import {
     HiOutlineUserAdd,
 	HiOutlineUpload,
 	HiOutlineUser,
+	HiOutlineDatabase
 } from 'react-icons/hi'
 
 export const DASHBOARD_SIDEBAR_LINKS = [
@@ -31,7 +32,7 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		key: 'transactions',
 		label: 'Transactions',
 		path: 'transactions',
-		icon: <HiOutlineDocumentText />
+		icon: <HiOutlineDatabase/>
 	}
 	
 ]
@@ -70,5 +71,11 @@ export const PRO_SIDEBAR_LINKS = [
 		label: 'My Documents',
 		path: 'documents',
 		icon: <HiOutlineDocumentText />
+	},
+	{
+		key: 'proTransaction',
+		label: 'My Transactions',
+		path: 'mytransactions',
+		icon: <HiOutlineDatabase/>
 	}
 ]

@@ -1,7 +1,6 @@
 import abi from "../contracts/SecTool.json";
-import { getGlobalState, setGlobalState } from "./store";
+import {  setGlobalState } from "./store";
 import { ethers } from "ethers";
-import { notifyError } from "./notificationServices";
 
 const { ethereum } = window;
 const contractAddress = "0xC1c1834f192C7DCD8f5FB6aBf121D06F5e6C867B";
@@ -184,14 +183,14 @@ const viewPRODocuments = async () => {
   }
 };
 
-const getProTransactions = async ({ proAddress }) => {
+const getProTransactions = async () => {
   try {
     if (!ethereum) return alert("Please Install Metamask");
 
-    const { contract } = await getViewerContract();
+    const { signer, contract } = await getSignerContract();
     if (contract) {
-      tx = await contract.getProTransactions(proAddress);
-      await tx.wait();
+      tx = await contract.getProTransactions(signer);
+      return tx;
     } else {
       console.error("Contract is not initialized.");
     }

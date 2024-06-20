@@ -11,6 +11,7 @@ import {
 import Register from "./components/Register";
 import Transactions from "./components/Transactions";
 import AdminDashboard from "./components/AdminDashboard";
+import ProTransactions from "./components/ProTransactions";
 import Home from "./components/views/Home";
 import AdminLayout from "./components/shared/AdminLayout";
 import ProDashboard from "./components/ProDashboard";
@@ -135,6 +136,10 @@ const router = createBrowserRouter([
       {
         path: "documents",
         element: <Documents />,
+      },
+      {
+        path: "mytransactions",
+        element: <ProTransactions/>,
       },
     ],
   },
