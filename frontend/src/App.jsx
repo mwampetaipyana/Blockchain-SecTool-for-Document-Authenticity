@@ -19,6 +19,7 @@ import ProLayout from "./components/shared/ProLayout";
 import Verify from "./components/Verify";
 import Documents from "./components/Documents";
 import { notifyError } from "./services/notificationServices";
+import Users from "./components/Users";
 // Function to check MetaMask connection for protected routes (replace with your actual logic)
 const isConnected = () => {
   if (localStorage.getItem("role")) {
@@ -26,12 +27,12 @@ const isConnected = () => {
   }
 };
 const isAdmin = () => {
-  if (localStorage.getItem("role") == "admin") {
+  if (localStorage.getItem("role") === "admin") {
     return true;
   }
 };
 const isPro = () => {
-  if (localStorage.getItem("role") == "pro") {
+  if (localStorage.getItem("role") === "pro") {
     return true;
   }
 };
@@ -104,6 +105,10 @@ const router = createBrowserRouter([
       {
         path: "register",
         element: <Register />,
+      },
+      {
+        path: "users",
+        element:<Users/>
       },
       {
         path: "transactions",

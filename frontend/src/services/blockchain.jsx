@@ -122,7 +122,7 @@ const verifyDocument = async ({ ipfs_hash }) => {
   try {
     if (!ethereum) return alert("Please Install Metamask");
 
-    const { contract } = await getSignerContract();
+    const { contract } = await getViewerContract();
     if (contract) {
       tx = await contract.verifyDocument(ipfs_hash);
       return tx
@@ -207,7 +207,7 @@ const getAllTxns = async () => {
     const { contract } = await getViewerContract();
     if (contract) {
       tx = await contract.getAllTxns();
-      await tx.wait();
+      return tx
     } else {
       console.error("Contract is not initialized.");
     }
@@ -223,6 +223,7 @@ const viewPROs = async () => {
     const { contract } = await getViewerContract();
     if (contract) {
       tx = await contract.viewPROs();
+      return tx
     } else {
       console.error("Contract is not initialized.");
     }

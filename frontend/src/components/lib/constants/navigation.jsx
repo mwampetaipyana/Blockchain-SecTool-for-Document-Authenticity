@@ -5,6 +5,7 @@ import {
 	HiOutlineCog,
     HiOutlineUserAdd,
 	HiOutlineUpload,
+	HiOutlineUser,
 } from 'react-icons/hi'
 
 export const DASHBOARD_SIDEBAR_LINKS = [
@@ -20,13 +21,19 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		path: 'register',
 		icon: <HiOutlineUserAdd />
 	},
-
+	{
+		key: 'users',
+		label: 'Users',
+		path: 'users',
+		icon: <HiOutlineUser/>
+	},
 	{
 		key: 'transactions',
 		label: 'Transactions',
 		path: 'transactions',
 		icon: <HiOutlineDocumentText />
 	}
+	
 ]
 
 export const DASHBOARD_SIDEBAR_BOTTOM_LINKS = [
