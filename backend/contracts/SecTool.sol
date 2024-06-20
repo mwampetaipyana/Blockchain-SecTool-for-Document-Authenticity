@@ -244,6 +244,7 @@ contract SecTool {
         // Remove the last element (which is now the document we want to delete)
         mydocumentsMapping[msg.sender].pop();
     }
+    addTransaction("Delete Document", msg.sender, "Success");
     }
 
      function login(address add) public view returns (string memory, string memory, string memory) {
