@@ -189,7 +189,7 @@ const getProTransactions = async () => {
 
     const { signer, contract } = await getSignerContract();
     if (contract) {
-      tx = await contract.getProTransactions(signer);
+      tx = await contract.getProTransactions(signer.getAddress());
       return tx;
     } else {
       console.error("Contract is not initialized.");

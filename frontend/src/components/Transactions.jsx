@@ -45,7 +45,7 @@ const Transactions = () => {
                 <td>{txn.transactionType}</td>
                 <td>{txn.userAddress}</td>
                 <td>{getDate(txn.timestamp)}</td>
-                <td>{txn.status}</td>
+                <td className="text-green-600">{txn.status}</td>
               </tr>
             ))}
           </tbody>
