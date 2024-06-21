@@ -3,7 +3,7 @@ import {  setGlobalState } from "./store";
 import { ethers } from "ethers";
 
 const { ethereum } = window;
-const contractAddress = "0xC1c1834f192C7DCD8f5FB6aBf121D06F5e6C867B";
+const contractAddress = "0x982B55dCecE0cbddFA082bAeD86A5822943Dd363";
 const INFURA_API_KEY = process.env.REACT_APP_INFURA_API_KEY;
 const contractAbi = abi.abi;
 let tx;

@@ -250,7 +250,7 @@ const Documents = () => {
           </div>
 
           <div className="flex flex-col justify-center items-center rounded-xl mt-5">
-            <p className="font-bold text-xl">Are you sure?</p>
+            <p className="font-bold text-xl">Are you sure you want to Delete the document?</p>
             <small className="text-red-400 text-lg">
               This is irreversible!
             </small>
