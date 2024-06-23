@@ -6,7 +6,6 @@ import Modal from "react-modal";
 import { toast } from "react-toastify";
 import { notifyError } from "../services/notificationServices";
 import { useNavigate } from "react-router-dom";
-
 import { verifyDocument } from "../services/blockchain";
 import { addFile } from "../services/PinataServices";
 
@@ -14,6 +13,7 @@ const Header = () => {
   const [file, setFile] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [isValid, setIsVerified] = useState(null);
+  const [isLoading, setIsLoading] = useState("");
 
   const navigate = useNavigate();
 
@@ -39,26 +39,25 @@ const Header = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     if (!file) return;
+    setIsLoading(true); // Start loading
     try {
       const ipfs_hash = await addFile("filename", file);
-      console.log(file);
       console.log(`The CID: ${ipfs_hash}`);
-  
+
       let document = await verifyDocument({ ipfs_hash });
-      console.log('Document response:', document);
-  
-      if (document  === true) {
+      console.log("Document response:", document);
+      setIsLoading(false);
+
+      if (document === true) {
         setIsVerified(true);
-      } else if(document === false) {
+      } else if (document === false) {
+        setIsVerified(false);
+      } else {
         setIsVerified(false);
       }
-      else {
-        // Handle case where document.isValid is not as expected
-        setIsVerified(false);
-      }
-  
+
       toast.success("Wait for confirmation, will reflect in 30 seconds.");
       reset();
     } catch (error) {
@@ -67,7 +66,7 @@ const Header = () => {
       setIsVerified(false);
     }
   };
-  
+
   const reset = () => {
     setFile(null);
   };
@@ -95,7 +94,7 @@ const Header = () => {
           isOpen={modalIsOpen}
           onRequestClose={() => setModalIsOpen(false)}
           contentLabel="File Uploader Modal"
-          className={`className=" p-4 flex justify-center items-center opacity-100 h-screen bg-white-300"`}
+          className="p-4 flex justify-center items-center opacity-100 h-screen bg-white-300"
         >
           <div className="flex flex-col justify-center items-center h-3/4 w-3/4 bg-gray-100">
             <form onSubmit={handleSubmit}>
@@ -127,32 +126,47 @@ const Header = () => {
                 >
                   Verify Document
                 </button>
+                
               )}
 
-              {isValid === true && (
-                <div className="mt-4 flex items-center space-x-2">
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/128/190/190411.png"
-                    alt="Tick"
-                    className="w-6 h-6"
-                  />
-                  <p className="text-green-600 font-semibold">
-                    Document is valid
-                  </p>
+              {isLoading ? (
+                <div>
+                  <img src='https://loading.io/asset/745158' alt="Loading..." />
                 </div>
-              )}
-              {isValid === false && (
-                <div className="mt-4 flex items-center space-x-2">
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/128/1828/1828843.png"
-                    alt="Times"
-                    className="w-6 h-6"
-                  />
-                  <p className="text-red-600 font-semibold">
-                    Document is invalid
-                  </p>
+              ) : (
+                <>
+                  {isValid === true && (
+                    <div className="mt-4 flex items-center space-x-2">
+                      <img
+                        src="https://cdn-icons-png.flaticon.com/128/190/190411.png"
+                        alt="Tick"
+                        className="w-6 h-6"
+                      />
+                      <p className="text-green-600 font-semibold">
+                        Document is valid
+                      </p>
+
+                      
+                    </div>
+                  )}
+                  {isValid === false && (
+                    <div className="mt-4 flex items-center space-x-2">
+                      <img
+                        src="https://cdn-icons-png.flaticon.com/128/1828/1828843.png"
+                        alt="Times"
+                        className="w-6 h-6"
+                      />
+                      <p className="text-red-600 font-semibold">
+                        Document is invalid
+                      </p>
+                      <div>
+                  
                 </div>
+                    </div>
+                  )}
+                </>
               )}
+
               <button
                 className="inline-block px-6 py-2.5 bg-red-500 text-white font-medium text-md leading-tight rounded-full shadow-md hover:bg-red-700 mt-5"
                 onClick={() => {
