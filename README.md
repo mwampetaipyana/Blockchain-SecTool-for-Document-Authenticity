@@ -31,4 +31,4 @@ The scope of this project aims to develop a security tool for verifying document
 
 ### Conceptual Diagram
 
-![alt text](<conceptual diagram.png>)
+![alt text](<edited Conceptual.png>)
