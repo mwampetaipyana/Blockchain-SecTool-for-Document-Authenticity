@@ -4,6 +4,7 @@ import { getSignerContract, getViewerContract } from "../services/blockchain";
 import { TbBusinessplan } from "react-icons/tb";
 import Modal from "react-modal";
 import { toast } from "react-toastify";
+import loader from '../assets/pulse.gif'
 import { notifyError } from "../services/notificationServices";
 import { useNavigate } from "react-router-dom";
 import { verifyDocument } from "../services/blockchain";
@@ -98,6 +99,7 @@ const Header = () => {
         >
           <div className="flex flex-col justify-center items-center h-3/4 w-3/4 bg-gray-100">
             <form onSubmit={handleSubmit}>
+            
               <label htmlFor="file" className="sr-only">
                 Choose a file
               </label>
@@ -111,6 +113,7 @@ const Header = () => {
 
               {file && (
                 <section>
+                  
                   File details:
                   <ul>
                     <li>Name: {file.name}</li>
@@ -131,7 +134,7 @@ const Header = () => {
 
               {isLoading ? (
                 <div>
-                  <img src='https://loading.io/asset/745158' alt="Loading..." />
+                  <img src={loader} alt="Loading..." />
                 </div>
               ) : (
                 <>
